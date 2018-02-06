@@ -1,0 +1,21 @@
+# Create a fragment in GraphQL (on the query user side)
+
+{
+  createChore(
+    name: "Cool"
+    description: "Description"
+    frequency: 1
+  ) {
+    ...chore
+  }
+}
+
+  fragment chore on Chore {
+    id
+    name
+    description
+    frequency
+    frequencyInterval
+    recurring
+    date
+  }

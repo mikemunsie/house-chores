@@ -12,17 +12,31 @@ const resolvers = {
 
 const schema = buildSchema(`
   type Query {
-    getChore(id: Int): Chore
+    getChore(id: Int): Chore,
+    createChore(
+      name: String,
+      description: String,
+      frequency: Int,
+      frequency_interval: String,
+      recurring: Boolean,
+      date: Int
+    ) : Chore
   },
 
   type Chore {
-    id: Int
-    name: String
+    id: Int,
+    name: String,
+    description: String,
+    frequency: Int,
+    frequencyInterval: String,
+    recurring: Boolean,
+    date: Int
   }
 `);
 
 const root = {
-  getChore: resolvers.chore.get
+  getChore: resolvers.chore.get,
+  createChore: resolvers.chore.create
 };
 
 const app = express();
