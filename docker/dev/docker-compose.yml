@@ -1,0 +1,37 @@
+version: '3'
+services:
+  db:
+    image: "postgres"
+    environment:
+     POSTGRES_PASSWORD: 123456
+     POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+  server:
+    image: house-chores-server:latest
+    depends_on:
+      - db
+    volumes:
+      - .:/docker/server
+    command:
+      bash /usr/app/scripts/dev.sh
+  client:
+    image: house-chores-client:latest
+    depends_on:
+      - server
+    volumes:
+      - .:/docker/client
+    command:
+      bash /usr/app/scripts/dev.sh
+    ports:
+      - "3000:3000"
+  web:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - server
+    links:
+      - client:client-app
+      - server:server-app

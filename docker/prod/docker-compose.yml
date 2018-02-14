@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: "postgres"
+    environment:
+     POSTGRES_PASSWORD: 123456
+     POSTGRES_USER: postgres
+    ports:
+      - 5432
+  server:
+    image: house-chores-server:latest
+    depends_on:
+      - db
+    command:
+      bash /usr/app/scripts/prod.sh
+  client:
+    image: house-chores-client:latest
+    depends_on:
+      - server
+    command:
+      bash /usr/app/scripts/prod.sh
+    volumes:
+      - static:/usr/app
+  web:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+      - server
+    links:
+      - client:client-app
+      - server:server-app
+    volumes:
+      - static:/var/www/static
+
+volumes:
+  static: {} # Create a shared volume (static folder in nginx will have client stuffs)
