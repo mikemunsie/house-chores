@@ -7,24 +7,27 @@ services:
      POSTGRES_USER: postgres
     ports:
       - "5432:5432"
+
   server:
     image: house-chores-server:latest
     depends_on:
       - db
-    volumes:
-      - .:/docker/server
     command:
       bash /usr/app/scripts/dev.sh
+    volumes:
+        - ../../server:/usr/app/:rw
+
   client:
     image: house-chores-client:latest
     depends_on:
       - server
     volumes:
-      - .:/docker/client
+      - ../../client:/usr/app/:rw
     command:
       bash /usr/app/scripts/dev.sh
     ports:
       - "3000:3000"
+
   web:
     build: .
     ports:
@@ -35,3 +38,4 @@ services:
     links:
       - client:client-app
       - server:server-app
+      
