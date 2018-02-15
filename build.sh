@@ -1,4 +1,4 @@
-if [ "$1" = "true" ]; then
+if [ "$1" = "prod" ]; then
   ENV="prod"
 else
   ENV="dev"
