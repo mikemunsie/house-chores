@@ -28,9 +28,6 @@ services:
     depends_on:
       - client
       - server
-    links:
-      - client:client-app
-      - server:server-app
     volumes:
       - static:/var/www/static
 

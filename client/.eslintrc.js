@@ -3,7 +3,11 @@
 module.exports = {
   root: true,
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
+    ecmaFeature: {
+      experimentalObjectRestSpread: true,
+      jsx: true
+    }
   },
   env: {
     browser: true,
@@ -25,6 +29,8 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    "comma-dangle": 0,
+
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
