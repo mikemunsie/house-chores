@@ -13,7 +13,12 @@
 <script>
 export default {
   name: 'Test',
-  props: ['message'],
+  props: {
+    message: {
+      type: String,
+      required: true
+    }
+  },
 
   computed: {
 
@@ -36,6 +41,14 @@ export default {
         {ElementTest('cool')}
         <div>Your Message: {message}</div>
         <div>Custom Message: {customMessage}</div>
+        <div>Slot:
+          {/* How to do slots in JSX */}
+          {this.$slots.default}
+        </div>
+        <div>Slot:
+          {/* How to do slots in JSX */}
+          {this.$slots.secondSlot}
+        </div>
       </div>
     );
   }
