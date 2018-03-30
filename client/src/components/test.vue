@@ -21,8 +21,6 @@ export default {
   },
 
   computed: {
-
-    // computed properties are cached based on their dependencies
     customMessage() {
       return this.message.split('').reverse().join('');
     },
@@ -42,13 +40,15 @@ export default {
         <div>Your Message: {message}</div>
         <div>Custom Message: {customMessage}</div>
         <div>Slot:
-          {/* How to do slots in JSX */}
           {this.$slots.default}
         </div>
         <div>Slot:
-          {/* How to do slots in JSX */}
           {this.$slots.secondSlot}
         </div>
+        <hr/>
+        <h3>Store Stuffs</h3>
+        Chores-name: {this.$store.state.chores.name}
+        <button onClick={() => this.$store.state.chores.name = 'cool'}> Click Me to change name</button>
       </div>
     );
   }

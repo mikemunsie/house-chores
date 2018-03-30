@@ -6,11 +6,15 @@
     </Test>
     <dl>
       <div>
+        <dt>State</dt>
+        <dd>{{$store.state.chores.name}}</dd>
+      </div>
+      <div>
         <dt>
           <span>Chore</span>
-          <span v-if="$apollo.queries.chore.loading"> Loading....</span>
+          <span v-if="chore.loading"> Loading....</span>
         </dt>
-        <dd>{{chore.id}} - {{chore.description}}</dd>
+        <dd>{{chore.data.id}} - {{chore.data.description}}</dd>
       </div>
       <div>
         <dt>Msg</dt>
@@ -44,32 +48,33 @@ export default {
   components: {
     Test,
   },
-  apollo: {
-    chore: {
-      query: gql`query getChore($id: Int!) {
-        getChore(id: $id) {
-          id,
-          description
-        }
-      }`,
-      // Static parameters
-      variables: {
-        id: 1,
-      },
-      update(data) {
-        return data.getChore;
-      }
-    }
-  },
   methods: {
-    switchCond1() {
-      console.log(this.cond1); // eslint-disable-line
-      this.cond1 = !this.cond1;
+    async switchCond1() {
+      this.chore.loading = this.$apollo.query({
+        fetchPolicy: 'no-cache',
+        query: gql(`query getChore($id: Int!) {
+          getChore(id: $id) {
+            id,
+            description
+          }
+        }`),
+        variables: {
+          id: 1
+        }
+      });
+      try {
+        const response = await this.chore.loading;
+        this.chore.data = response.data.getChore;
+        this.cond1 = !this.cond1;
+      } catch(e) {
+        // do nothing
+      }
+      this.chore.loading = false;
     },
   },
   data() {
     return {
-      chore: { },
+      chore: { loading: false, data: { } },
       cond1: false,
       inputMessage: '',
       msg: 'Welcome to Your App using GraphQL',

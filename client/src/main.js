@@ -7,12 +7,13 @@ import VueApollo from 'vue-apollo'
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-
+import store from './store';
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({
     uri: 'http://127.0.0.1/api/graphql',
   }),
+  cache: null,
   cache: new InMemoryCache(),
   connectToDevTools: true,
 });
@@ -29,6 +30,7 @@ new Vue({
   el: '#app',
   provide: apolloProvider.provide(),
   router,
+  store,
   components: { App },
   template: '<App/>',
 });
