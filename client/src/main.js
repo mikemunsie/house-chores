@@ -11,7 +11,7 @@ import store from './store';
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'http://127.0.0.1/api/graphql',
+    uri: 'http://localhost:8080/api/graphql',
   }),
   cache: null,
   cache: new InMemoryCache(),
@@ -20,7 +20,7 @@ const apolloClient = new ApolloClient({
 
 const apolloProvider = new VueApollo({
   defaultClient: apolloClient,
-})
+});
 
 Vue.config.productionTip = false;
 Vue.use(VueApollo);

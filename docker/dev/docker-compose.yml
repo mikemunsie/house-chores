@@ -18,26 +18,14 @@ services:
       bash /usr/app/scripts/dev.sh
     volumes:
         - ../../server:/usr/app/:rw
-
-  client:
-    image: house-chores-client:latest
-    depends_on:
-      - server
-    volumes:
-      - ../../client:/usr/app/:rw
-    command:
-      bash /usr/app/scripts/dev.sh
-    ports:
-      - "3000:3000"
+        - ../../server/node_modules:/usr/app/node_modules
 
   web:
     build: .
     ports:
       - "80:80"
     depends_on:
-      - client
       - server
     links:
-      - client:client-app
       - server:server-app
       

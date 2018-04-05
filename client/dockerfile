@@ -2,4 +2,3 @@ from node:9-slim
 
 ENV PORT=3000 HOST=0.0.0.0
 WORKDIR "/usr/app"
-COPY . /usr/app
