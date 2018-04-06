@@ -1,5 +1,6 @@
 {
   "name": "house-chores-bootstrapper",
+  "version": "1.0.0",
   "description": "Makes it easier to get in and start developing",
   "main": "index.js",
   "scripts": {

@@ -20,22 +20,32 @@ export default {
     }
   },
 
+  data() {
+    return {
+      loading: false
+    }
+  },
+
   computed: {
     customName() {
       const name = this.$store.state.chores.name;
-      console.log({name});
       return name.split('').reverse().join('');
     },
   },
 
   methods: {
-    changeName() {
-      this.$store.state.chores.name = Math.random().toString();
+    changeNameCommit() {
+      this.$store.commit('chores/changeName', Math.random().toString());
+    },
+    async changeNameDispatch() {
+      this.loading = true;
+      await this.$store.dispatch('chores/changeName', Math.random().toString());
+      this.loading = false;
     }
   },
 
   render() {
-    const { name, className, customName } = this;
+    const { name, className, customName, loading } = this;
 
     const ElementTest = name => (
       <span>{name}</span>
@@ -46,7 +56,11 @@ export default {
         <h1>{name}</h1>
         <dl>
           <div>
-            <dt>Chores-name</dt>
+            <dt>Is Loading</dt>
+            <dd>{loading.toString()}</dd>
+          </div>
+          <div>
+            <dt>Chores Name</dt>
             <dd>{this.$store.state.chores.name}</dd>
           </div>
           <div>
@@ -54,7 +68,13 @@ export default {
             <dd>{this.customName}</dd>
           </div>
         </dl>
-        <button onClick={() => this.changeName()}> Click Me to change the state</button>
+        <button
+          class='margin-bottom--default'
+          onClick={() => this.changeNameCommit()}
+        >
+          Commit: chores/changeName
+        </button>
+        <button onClick={() => this.changeNameDispatch()}> Dispatch: chores/changeName</button>
       </div>
     );
   }

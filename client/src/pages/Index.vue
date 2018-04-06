@@ -1,12 +1,13 @@
 <template>
   <div class='test-modules'>
-    <TestModulesSlots v-bind:message='inputMessage' class='test-module'>
+    <TestModulesSlots v-bind:message='inputMessage'>
       <div slot='default'>This will go into the slot</div>
       <div slot='secondSlot'>This will go into the second slot</div>
     </TestModulesSlots>
-    <TestModulesStore name='Store Module 1' class='test-module' />
-    <TestModulesStore name='Store Module 2' class='test-module' />
-    <TestModulesGraphQL class='test-module' />
+    <TestModulesStore name='Store Module 1'/>
+    <TestModulesStore name='Store Module 2' />
+    <TestModulesGraphQL />
+    <TestModulesInputs />
   </div>
 </template>
 
@@ -15,11 +16,13 @@ import gql from 'graphql-tag';
 import TestModulesStore from '@/components/test-modules/store';
 import TestModulesGraphQL from '@/components/test-modules/graphql';
 import TestModulesSlots from '@/components/test-modules/slots';
+import TestModulesInputs from '@/components/test-modules/inputs';
 
 export default {
   name: 'PagesIndex',
   components: {
     TestModulesGraphQL,
+    TestModulesInputs,
     TestModulesSlots,
     TestModulesStore
   },
@@ -41,7 +44,7 @@ export default {
         const response = await this.chore.loading;
         this.chore.data = response.data.getChore;
         this.cond1 = !this.cond1;
-      } catch(e) {
+      } catch (e) {
         // do nothing
       }
       this.chore.loading = false;
@@ -63,13 +66,13 @@ export default {
     display: grid;
     grid-template-columns: repeat(3, 33%);
     grid-auto-rows: 300px;
-  }
 
-  .test-module {
-    border: 1px solid #abc;
-    border-radius: 3px;
-    margin: 6px;
-    overflow: scroll;
-    padding: padding('default');
+    > * {
+      border: 1px solid #abc;
+      border-radius: 3px;
+      margin: 6px;
+      overflow-y: scroll;
+      padding: padding('default');
+    }
   }
 </style>
