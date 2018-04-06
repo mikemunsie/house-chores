@@ -1,1 +1,15 @@
 $red: #000;
+
+$padding: (
+  'default': 1em,
+  'small': .3em,
+  'large': 1em
+);
+
+$colors: (
+  'primary': #000
+);
+
+@function padding($pad: 'default') {
+  @return map-get($padding, $pad);
+}

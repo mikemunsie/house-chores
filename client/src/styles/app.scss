@@ -1,1 +1,52 @@
 @import '_variables';
+@import '_reset';
+
+
+h1 {
+  font-size: 1.5em;
+  margin-bottom: padding('large');
+}
+
+body {
+  font-size: .85em;
+}
+
+p {
+  margin-bottom: padding();
+}
+
+dl {
+  border-spacing: 0 padding();
+  display: inline-table;
+  text-align: left;
+
+  dt, dd {
+    display: table-cell;
+  }
+
+  dt {
+    padding-right: 1em;
+    font-weight: bold;
+    white-space: nowrap;
+
+    &:after {
+      content: ':';
+    }
+  }
+
+  div {
+    display: table-row;
+  }
+}
+
+button {
+  border: 1px solid #abc;
+  padding: padding('default');
+  outline: none;
+
+  &:hover {
+    background: #cde;
+    cursor: hand;
+    cursor: pointer;
+  }
+}

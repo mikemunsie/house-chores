@@ -1,1 +1,0 @@
-ENV=dev bash build.sh

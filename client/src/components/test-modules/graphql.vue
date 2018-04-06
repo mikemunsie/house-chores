@@ -1,14 +1,7 @@
 <template>
   <div>
-    <Test v-bind:message='inputMessage'>
-      <div slot="default">This will go into the slot</div>
-      <div slot="secondSlot">This will go into the second slot</div>
-    </Test>
+    <h1>GraphQL</h1>
     <dl>
-      <div>
-        <dt>State</dt>
-        <dd>{{$store.state.chores.name}}</dd>
-      </div>
       <div>
         <dt>
           <span>Chore</span>
@@ -21,7 +14,7 @@
         <dd>{{msg}}</dd>
       </div>
       <div>
-        <dt>Condition</dt>
+        <dt>Test Fetch</dt>
         <dd>
           <button v-on:click='switchCond1'>{{cond1}}</button>
         </dd>
@@ -33,21 +26,14 @@
         </dd>
       </div>
     </dl>
-    <div v-if='cond1'>
-      This will show when the condition is true
-    </div>
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag';
-import Test from './test';
 
 export default {
-  name: 'HelloWorld',
-  components: {
-    Test,
-  },
+  name: 'TestModulesGraphQL',
   methods: {
     async switchCond1() {
       this.chore.loading = this.$apollo.query({
@@ -84,12 +70,4 @@ export default {
 </script>
 
 <style lang='scss'>
-  dl {
-    display: inline-table;
-    text-align: left;
-
-    div { display: table-row; }
-    dt, dd { display: table-cell; }
-    dt { padding-right: 1em; }
-  }
 </style>
