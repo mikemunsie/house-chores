@@ -4,6 +4,7 @@
   "description": "Makes it easier to get in and start developing",
   "main": "index.js",
   "scripts": {
-    "dev": "bash build.sh"
+    "server": "bash scripts/server.sh",
+    "dev": "cd client; npm run dev"
   }
 }
