@@ -1,11 +1,13 @@
 @import '_variables';
 @import '_reset';
+@import '_bulma';
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  padding: padding('default');
 }
 
 h1 {
@@ -57,12 +59,32 @@ button {
   }
 }
 
+.form-fields {
+  max-width: 450px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-items-center {
+  align-items: center;
+}
+
+.no-flex {
+  display: block !important;
+}
+
+.divider {
+  border-top: 1px solid #aaa;
+}
+
 .margin {
   @each $dir in ('bottom', 'top', 'left', 'right') {
     @each $pad, $padValue in $padding {
       &-#{$dir} {
         &--#{$pad} {
-          margin-#{$dir}: $padValue;
+          margin-#{$dir}: $padValue !important;
         }
       }
     }
@@ -73,8 +95,8 @@ button {
   @each $dir in ('bottom', 'top', 'left', 'right') {
     @each $pad, $padValue in $padding {
       &-#{$dir} {
-        &-#{$pad} {
-          padding-#{$dir}: $padValue;
+        &--#{$pad} {
+          padding-#{$dir}: $padValue !important;
         }
       }
     }

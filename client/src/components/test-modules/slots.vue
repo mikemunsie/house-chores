@@ -25,9 +25,6 @@ export default {
 
   render() {
     const { message, customMessage } = this;
-
-    console.log({ message, customMessage });
-
     const ElementTest = name => (
       <span>{name}</span>
     );

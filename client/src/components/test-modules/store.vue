@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       loading: false
-    }
+    };
   },
 
   computed: {
@@ -45,16 +45,20 @@ export default {
   },
 
   render() {
-    const { name, className, customName, loading } = this;
+    const { name, className, loading } = this;
 
-    const ElementTest = name => (
-      <span>{name}</span>
+    const ElementTest = str => (
+      <span>{str}</span>
     );
 
     return (
       <div class={className}>
         <h1>{name}</h1>
         <dl>
+          <div>
+            <dt>ElementTest Result</dt>
+            <dd>{ElementTest('cool')}</dd>
+          </div>
           <div>
             <dt>Is Loading</dt>
             <dd>{loading.toString()}</dd>

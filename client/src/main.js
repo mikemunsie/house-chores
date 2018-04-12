@@ -8,6 +8,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+import Buefy from 'buefy'
 
 const apolloClient = new ApolloClient({
   link: new HttpLink({
@@ -24,6 +25,7 @@ const apolloProvider = new VueApollo({
 
 Vue.config.productionTip = false;
 Vue.use(VueApollo);
+Vue.use(Buefy);
 
 /* eslint-disable no-new */
 new Vue({
