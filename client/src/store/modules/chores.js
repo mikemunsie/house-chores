@@ -1,9 +1,8 @@
 export default {
   namespaced: true,
   state: {
-    added: [],
-    name: 'Mike',
-    checkoutStatus: null,
+    items: [],
+    name: 'Mike'
   },
 
   // Actions are async
@@ -16,6 +15,9 @@ export default {
 
   // Mutations are sync
   mutations: {
+    addChore(state, chore) {
+      state.items.push(chore);
+    },
     changeName(state, name) {
       state.name = name;
     }
