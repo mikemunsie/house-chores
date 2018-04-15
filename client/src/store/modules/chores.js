@@ -5,8 +5,20 @@ export default {
     name: 'Mike'
   },
 
+  // Getters allow for reusable model logic
+  getters: {
+    choresByFilter: ({ items }) => (recurring = true) => {
+      console.log('grabbinh')
+      return items.filter((i) => i.recurring === recurring)
+    }
+  },
+
   // Actions are async
   actions: {
+    async addChore({ commit }, chore) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      commit('addChore', chore);
+    },
     async changeName({ commit }, name) {
       await new Promise(resolve => setTimeout(resolve, 1000));
       commit('changeName', name);

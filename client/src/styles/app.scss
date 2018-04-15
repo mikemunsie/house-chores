@@ -2,12 +2,21 @@
 @import '_reset';
 @import '_bulma';
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  padding: padding('default');
+}
+
+.container {
+  max-width: 1024px;
+  margin: auto;
+  padding: 0 padding(default);
 }
 
 h1 {
@@ -65,6 +74,10 @@ button {
 
 .flex {
   display: flex;
+}
+
+.flex-right {
+  margin-left: auto;
 }
 
 .flex-items-center {

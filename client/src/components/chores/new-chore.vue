@@ -2,7 +2,6 @@
   <div>
     <div class="flex">
       <div class="form-fields">
-        <h1>New Chore</h1>
         <b-field label="Name">
           <b-input v-model="chore.name" />
         </b-field>
@@ -30,45 +29,56 @@
             </b-select>
           </div>
         </b-field>
-        <b-field class="divider margin-top--large padding-top--default">
-          <button v-on:click="addChore" class="button is-primary margin-top--default">Create Chore</button>
+        <b-field class="divider items-center margin-top--large padding-top--large">
+          <button v-on:click="addChoreCommit" class="button is-primary">Create Chore (Commit)</button>
+          <button v-on:click="addChoreDispatch" class="button is-primary margin-left--default">Create Chore (Dispatch)</button>
         </b-field>
-      </div>
-      <div class="chore-list">
-        Chores Length: {{this.chores}}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+import { newChore } from '@/api/chore';
 
 export default {
   name: 'new-chore',
-  computed: mapState({
-    chores: ({ chores }) => chores.items
-  }),
-  methods: {
-    addChore() {
-      this.$store.dispatch('addChore', this.chore);
+  props: ['on-create'],
+  
+  computed: {
+    chores(state) {
+      return this.$store.getters['chores/choresByFilter'](this.filters.isRecurring);
     }
   },
+
+  methods: {
+    addChoreCommit() {
+      console.log(this);
+      this.$store.commit('chores/addChore', {...this.chore });
+      this.chore = newChore();
+      if (this.onCreate) this.onCreate(); 
+    },
+    addChoreDispatch() {
+      this.$store.dispatch('chores/addChore', { ...this.chore });
+      this.chore = newChore();
+      if (this.onCreate) this.onCreate(); 
+    }
+  },
+
   data() {
     return {
-      chore: {
-        name: 'My Chore',
-        description: '',
-        frequency: 1,
-        frequencyRange: 'day',
-        recurring: false
-      }
+      filters: {
+        isRecurring: false
+      },
+      chore: newChore()
     };
   }
 };
 </script>
 
 <style lang='scss' scoped>
+
   .frequency-number {
     width: 100px;
   }

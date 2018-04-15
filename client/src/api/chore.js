@@ -1,5 +1,13 @@
 import gql from 'graphql-tag';
 
+export const newChore = () => ({
+  name: 'My Chore',
+  description: '',
+  frequency: 1,
+  frequencyRange: 'day',
+  recurring: false
+});
+
 export function getChore(id) {
   this.$apollo.query({
     fetchPolicy: 'no-cache',
