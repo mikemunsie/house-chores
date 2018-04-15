@@ -9,20 +9,21 @@
           store it, and do it.
         </p>
       </div>
-      <div class='login-container__right'>
+      <form class='login-container__right'>
         <div>
           <div class='field'>
             <input 
-              autocomplete='off' 
+              autocomplete='somerandom' 
               required 
               id='name' 
               type='text' 
+              autofocus
             />
             <label for='name'>Name:</label>
           </div>
           <div class='field'>
             <input 
-              autocomplete='off' 
+              autocomplete='somerandom' 
               required 
               id='password' 
               type='password' 
@@ -35,7 +36,7 @@
             </router-link>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -54,6 +55,7 @@ body {
 h1, h2 {
   margin: 0;
   font-weight: 300;
+  margin-bottom: padding(default);
 }
 
 p {
@@ -62,7 +64,7 @@ p {
 
 button {
   display: block;
-  background: lighten(#232323, 10);
+  background: color('primary');
   width: 100%;
   font-size: inherit;
   padding: 15px;
@@ -70,7 +72,7 @@ button {
   border: 0;
   
   &:hover {
-    background: #232323;
+    background: darken(color('primary'), 10);
   }
 }
 
@@ -90,23 +92,22 @@ button {
   input {
     outline: 0;
     position: absolute;
-    top: 0;
+    top: padding(default) + .2em;
     left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
     border: 0;
     z-index: 0;
     font-size: 1em;
     border-bottom: 1px solid #ccc;  
     padding: padding(default);
-   
+
     &:focus {
       border-bottom: 1px solid #aaa;
     }
     
-    &:focus, &:valid {
+    &:focus, &:valid, &:-webkit-autofill {
       ~ label {
         font-size: .7em;
         transform: translateY(-20px);
@@ -164,7 +165,7 @@ button {
   bottom: 0;
   right: 0;
   left: 0;
-  background: url('https://i.pinimg.com/736x/14/a4/19/14a419af82bec1afcdeeae7e944ac101--city-wallpaper-wallpaper-free.jpg');
+  background: url('https://2qaayg3yvidcn9imquz625sg-wpengine.netdna-ssl.com/wp-content/uploads/2018/01/bleach-cleaner.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   filter: opacity(.8);

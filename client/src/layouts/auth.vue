@@ -4,10 +4,10 @@
       <div class='container'>
         <router-link to="/auth/" class="logo">
         </router-link>
-        <router-link to="/auth/" class="navbar-item">
+        <router-link to="/auth/">
           My Chores
         </router-link>
-        <router-link to="/auth/test" class="navbar-item">
+        <router-link to="/auth/test">
           Test Page
         </router-link>
       </div>
@@ -20,8 +20,14 @@
 
 <style lang='scss' scoped>
 nav {
-  margin-top: padding(default);
-  
+  background: #222;
+  padding: padding(default) 0;
+
+  a {
+    color: white;
+    margin-right: padding(large);
+  }
+
   .container {
     display: flex;
     align-items: center;
@@ -31,8 +37,8 @@ nav {
 
 .logo {
   display: block;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #000;
 }

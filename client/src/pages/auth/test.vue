@@ -1,16 +1,5 @@
 <template>
   <div>
-    <section>
-      <button class="button is-medium is-primary" @click="alert">
-        Launch alert (default)
-      </button>
-      <button class="button is-medium is-primary" @click="alertCustom">
-        Launch alert (custom)
-      </button>
-      <button class="button is-medium is-danger" @click="alertCustomError">
-        Launch alert (custom)
-      </button>
-    </section>
     <div class='test-modules'>
       <TestModulesSlots v-bind:message='inputMessage'>
         <div slot='default'>This will go into the slot</div>

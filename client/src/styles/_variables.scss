@@ -7,8 +7,12 @@ $padding: (
 );
 
 $colors: (
-  'primary': #000
+  'primary': #587EBB
 );
+
+@function color($color: 'primary') {
+  @return map-get($colors, $color);
+}
 
 @function padding($pad: 'default') {
   @return map-get($padding, $pad);
